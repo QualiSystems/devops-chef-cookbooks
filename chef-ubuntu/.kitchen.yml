@@ -1,0 +1,55 @@
+---
+driver:
+    name: hyperv
+    vm_generation: 2
+    disable_secureboot: true
+    enable_guest_services: true
+    memory_startup_bytes: 2147483648
+    dynamic_memory: true
+    vm_switch: "'Hyper-V'"
+
+provisioner:
+  name: chef_zero
+  roles_path: '../roles'
+
+transport:
+  name: ssh
+  elevated: true
+  password: 'vagrant'
+  username: 'vagrant'
+
+platforms:
+  - name: monodevelop
+    os_type: unix
+    driver:
+        parent_vhd_folder: '../../.output/hyperv/monodevelop/Virtual Hard Disks'
+        parent_vhd_name: '/monodevelop.vhdx'
+verifier:
+      name: inspec
+
+suites:
+  - name: common
+    run_list:
+#      - recipe[chef-ubuntu::install_hyperv_integration_services]
+#      - recipe[chef-ubuntu::configure_ssh]
+#      - recipe[chef-ubuntu::add_vagrant_ssh_key]
+#      - recipe[chef-ubuntu::set_time_zone]
+#      - recipe[chef-ubuntu::purge_apt_packages]
+#      - recipe[chef-ubuntu::delete_redundant_files]       
+#      - recipe[chef-ubuntu::configure_xrdp_to_use_xfce]
+#      - role[monodevelop_7.3.0.764]
+#      - recipe[chef-ubuntu::install_xrdp]
+#      - recipe[chef-ubuntu::configure_apt_to_filter_packages_files]
+#      - recipe[chef-ubuntu::clean_apt]
+#      - recipe[chef-ubuntu::install_mono]
+#      - recipe[chef-ubuntu::build_monodevelop_7.3.0.764]
+#      - recipe[chef-ubuntu::create_monodevelop_desktop_shortcut]
+
+    attributes:
+        monodevelop_verison: "7.3.0.764"
+        box_settings:
+            is_desktop: "false"
+            time_zone: 'Asia/Jerusalem'
+            ssh_user: 'vagrant'
+            ssh_user_password: 'vagrant'
+            ssh_user_group: 'vagrant'
