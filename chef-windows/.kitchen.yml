@@ -16,16 +16,16 @@ transport:
   username: 'vagrant'
 
 platforms:
-  - name: win-10
-    os_type: windows
-    driver:
-        parent_vhd_folder: '../../.output/hyperv/win10/Virtual Hard Disks'
-        parent_vhd_name: 'win10.vhdx'
-#  - name: server-2016
+#  - name: win-10
 #    os_type: windows
 #    driver:
-#        parent_vhd_folder: '../../.output/hyperv/server-2016'
-#        parent_vhd_name: 'win-server-2016.vhdx'
+#        parent_vhd_folder: '../../.output/hyperv/win10/Virtual Hard Disks'
+#        parent_vhd_name: 'win10.vhdx'
+  - name: win-server-core-2019
+    os_type: windows
+    driver:
+        parent_vhd_folder: '../../.output/hyperv/server_core_2019/Virtual Hard Disks'
+        parent_vhd_name: 'server_core_2019.vhdx'
 
 verifier:
       name: inspec
@@ -42,8 +42,9 @@ suites:
 #      - recipe[chef-windows::uninstall_one_drive]
 #      - recipe[chef-windows::uninstall_windows_media_player]
 #      - recipe[chef-windows::clean_sxs]
-#      - role[dotnet_env]
-    attributes: 
+      - role[docker_server]
+    attributes:
+        have_gui: 'false'
         box_settings:
             username: 'kitchen-username'
             user_password: 'kitchen-password'
