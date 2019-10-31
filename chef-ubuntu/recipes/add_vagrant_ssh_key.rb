@@ -1,4 +1,5 @@
-ssh_user = 'vagrant'
+box_settings = node['box_settings']
+ssh_user = box_settings['ssh_user']
 
 directory "/home/#{ssh_user}/.ssh" do
   owner ssh_user

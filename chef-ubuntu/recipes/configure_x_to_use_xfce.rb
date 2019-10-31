@@ -7,6 +7,6 @@ file 'configure x server to start xfce with startx' do
   owner ssh_user
   group ssh_group
   mode '0644'
-  path "/home/vagrant/.xsession"
+  path "/home/#{ssh_user}/.xsession"
   action :create
 end
