@@ -7,7 +7,7 @@ end
 
 ssh_user = box_settings['ssh_user']
 ssh_user_group = box_settings['ssh_user_group']
-home_folder = "/home/#{ssh_user}"
+home_folder = box_settings['home_folder']
 monodevelop_version = node['monodevelop_version']
 
 cookbook_file 'create a script that executes monodevelop' do
@@ -31,5 +31,6 @@ template 'create monodevelop desktop shortcut' do
   mode '0775'
   variables({
 	  'monodevelop_version': monodevelop_version,
+	  'home_folder': home_folder,
   })
 end

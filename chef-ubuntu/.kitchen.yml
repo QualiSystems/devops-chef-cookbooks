@@ -30,6 +30,7 @@ platforms:
             ssh_user: 'vagrant'
             ssh_user_password: 'vagrant'
             ssh_user_group: 'vagrant'
+            home_folder: '/home/vagrant'
   
   - name: ubuntu-18.04-docker    
     transport:
@@ -51,6 +52,7 @@ platforms:
             ssh_user: 'root'
             ssh_user_password: 'root'
             ssh_user_group: 'root'
+            home_folder: '/root'
   
   - name: ubuntu-18.04-vagrant
     driver:
@@ -65,6 +67,7 @@ platforms:
             ssh_user: 'vagrant'
             ssh_user_password: 'vagrant'
             ssh_user_group: 'vagrant'
+            home_folder: '/home/vagrant'
 
 verifier:
       name: inspec
@@ -72,8 +75,10 @@ verifier:
 suites:
   - name: monodevelop
     run_list:
-      - recipe[chef-ubuntu::install_mono]
-      - recipe[chef-ubuntu::build_monodevelop]
+      #- recipe[chef-ubuntu::install_mono]
+      #- recipe[chef-ubuntu::build_monodevelop]
+      #- recipe[chef-ubuntu::install_base_server_packages]
+      - role[monodevelop]
     attributes:
         monodevelop_version: '7.3.0.764'
         mono_apt_repo_distro: 'stable-bionic'

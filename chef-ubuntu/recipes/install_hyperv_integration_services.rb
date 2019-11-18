@@ -1,3 +1,4 @@
+apt_update
 package 'Install Hyper-v integration services' do
   version = Gem::Version.new(node[:platform_version])
   if version >= Gem::Version.new('17.04')

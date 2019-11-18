@@ -5,6 +5,8 @@ if !is_desktop || is_desktop.downcase == "false"
 	return
 end
 
+apt_update
+
 package 'install xrdp' do
 	package_name ['xrdp']
 end
