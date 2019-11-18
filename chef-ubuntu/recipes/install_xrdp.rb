@@ -1,5 +1,10 @@
 box_settings = node['box_settings']
 
+is_desktop = box_settings['is_desktop']
+if !is_desktop || is_desktop.downcase == "false"
+	return
+end
+
 package 'install xrdp' do
 	package_name ['xrdp']
 end

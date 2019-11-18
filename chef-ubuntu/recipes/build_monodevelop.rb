@@ -38,5 +38,5 @@ execute 'build monodevelop' do
   user ssh_user
   cwd monodevelop_git_repo_dir
   live_stream true
-  command 'make'
+  command 'make > monodevelop_build_output.txt' # This is a workaround for a packer bug. Packer is not realizing the the chef-solo process has exited because of this specific output and keeps waiting forever.
 end

@@ -42,7 +42,7 @@ suites:
 #      - recipe[chef-windows::uninstall_one_drive]
 #      - recipe[chef-windows::uninstall_windows_media_player]
 #      - recipe[chef-windows::clean_sxs]
-      - role[docker_server]
+      - role[windows_docker_server]
     attributes:
         have_gui: 'false'
         box_settings:

@@ -1,3 +1,8 @@
+is_desktop = node['box_settings']['is_desktop']
+if !is_desktop || is_desktop.downcase == "false"
+	return
+end
+
 package 'install xfce desktop environment' do
 	package_name ['xfce4', 'xserver-xorg-legacy']
 end
