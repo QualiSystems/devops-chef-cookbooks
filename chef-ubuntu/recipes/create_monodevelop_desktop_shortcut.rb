@@ -1,10 +1,4 @@
 box_settings = node['box_settings']
-
-is_desktop = box_settings['is_desktop']
-if !is_desktop || is_desktop.downcase == "false"
-	return
-end
-
 ssh_user = box_settings['ssh_user']
 ssh_user_group = box_settings['ssh_user_group']
 home_folder = box_settings['home_folder']

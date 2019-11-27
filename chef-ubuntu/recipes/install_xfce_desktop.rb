@@ -1,8 +1,3 @@
-is_desktop = node['box_settings']['is_desktop']
-if !is_desktop || is_desktop.downcase == "false"
-	return
-end
-
 apt_update
 
 package 'install xfce desktop environment' do
