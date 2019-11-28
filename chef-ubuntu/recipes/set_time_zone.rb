@@ -1,8 +1,4 @@
 time_zone = node['box_settings']['time_zone']
-
-script 'set time zone' do
-  interpreter "bash"
-  code <<-EOH
-    sudo timedatectl set-timezone #{time_zone}
-    EOH
+timezone 'Set the hosts timezone to #{time_zone}' do
+  timezone time_zone
 end

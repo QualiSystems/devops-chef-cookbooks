@@ -1,10 +1,12 @@
 box_settings = node['box_settings']
 ssh_user = box_settings['ssh_user']
 ssh_user_group = box_settings['ssh_user_group']
+home_folder = box_settings['home_folder']
 monodevelop_version = node['monodevelop_version']
-monodevelop_directory = "/home/#{ssh_user}/monodevelop"
+monodevelop_directory = "#{home_folder}/monodevelop"
 monodevelop_git_repo_dir = "#{monodevelop_directory}/#{monodevelop_version}"
-monodevelop_build_dir = "#{monodevelop_git_repo_dir}/main"
+
+apt_update
 
 package 'install git' do
 	package_name 'git'
@@ -38,5 +40,5 @@ execute 'build monodevelop' do
   user ssh_user
   cwd monodevelop_git_repo_dir
   live_stream true
-  command 'make'
+  command 'make > monodevelop_build_output.txt' # This is a workaround for a packer bug. Packer is not realizing the the chef-solo process has exited because of this specific output and keeps waiting forever.
 end

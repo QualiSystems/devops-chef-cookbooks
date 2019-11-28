@@ -1,3 +1,5 @@
+apt_update
+
 package 'install xfce desktop environment' do
 	package_name ['xfce4', 'xserver-xorg-legacy']
 end

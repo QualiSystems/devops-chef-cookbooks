@@ -1,15 +1,16 @@
 ---
 driver:
     name: hyperv
+    os_type: unix
     vm_generation: 2
     disable_secureboot: true
     enable_guest_services: true
     memory_startup_bytes: 2147483648
     dynamic_memory: true
-    vm_switch: "'Hyper-V'"
+    vm_switch: "'packer-hyperv-iso'"
 
 provisioner:
-  name: chef_zero
+  name: chef_solo
   roles_path: '../roles'
 
 transport:
@@ -18,38 +19,71 @@ transport:
   password: 'vagrant'
   username: 'vagrant'
 
-platforms:
-  - name: monodevelop
-    os_type: unix
+platforms:  
+  - name: ubuntu-18.04-hyperv
     driver:
-        parent_vhd_folder: '../../.output/hyperv/monodevelop/Virtual Hard Disks'
-        parent_vhd_name: '/monodevelop.vhdx'
+      name: hyperv
+      parent_vhd_folder: '../../packer/.output/hyperv/monodevelop/Virtual Hard Disks'
+      parent_vhd_name: '/monodevelop.vhdx'
+    attributes:
+        box_settings:
+            ssh_user: 'vagrant'
+            ssh_user_password: 'vagrant'
+            ssh_user_group: 'vagrant'
+            home_folder: '/home/vagrant'
+  
+  - name: ubuntu-18.04-docker    
+    transport:
+      name: ssh
+      password: root
+      username: root
+    driver:
+      name: docker
+      dockerfile: Dockerfile
+      run_command: /usr/sbin/sshd -D
+      username: root
+      socket: npipe:////./pipe/docker_engine
+      platform: ubuntu
+      env_variables:
+        DISPLAY: '192.168.1.172:0.0'
+        MONODEVELOP_SDB_TEST: YES
+    attributes:
+        box_settings:
+            ssh_user: 'root'
+            ssh_user_password: 'root'
+            ssh_user_group: 'root'
+            home_folder: '/root'
+  
+  - name: ubuntu-18.04-vagrant
+    driver:
+      name: vagrant
+      provider: hyperv
+      box: ubuntu1804
+      vm_hostname: false
+      network:
+        - ["public_network", bridge: "packer-hyperv-iso"]
+    attributes:
+        box_settings:
+            ssh_user: 'vagrant'
+            ssh_user_password: 'vagrant'
+            ssh_user_group: 'vagrant'
+            home_folder: '/home/vagrant'
+
 verifier:
       name: inspec
 
 suites:
-  - name: common
+  - name: monodevelop
     run_list:
-#      - recipe[chef-ubuntu::install_hyperv_integration_services]
-#      - recipe[chef-ubuntu::configure_ssh]
-#      - recipe[chef-ubuntu::add_vagrant_ssh_key]
-#      - recipe[chef-ubuntu::set_time_zone]
-#      - recipe[chef-ubuntu::purge_apt_packages]
-#      - recipe[chef-ubuntu::delete_redundant_files]       
-#      - recipe[chef-ubuntu::configure_xrdp_to_use_xfce]
-#      - role[monodevelop_7.3.0.764]
-#      - recipe[chef-ubuntu::install_xrdp]
-#      - recipe[chef-ubuntu::configure_apt_to_filter_packages_files]
-#      - recipe[chef-ubuntu::clean_apt]
-#      - recipe[chef-ubuntu::install_mono]
-#      - recipe[chef-ubuntu::build_monodevelop_7.3.0.764]
-#      - recipe[chef-ubuntu::create_monodevelop_desktop_shortcut]
-
+      #- recipe[chef-ubuntu::install_hyperv_integration_services]
+      #- recipe[chef-ubuntu::install_mono]
+      #- recipe[chef-ubuntu::build_monodevelop]
+      #- recipe[chef-ubuntu::install_base_server_packages]
+      - role[monodevelop]
     attributes:
-        monodevelop_verison: "7.3.0.764"
+        monodevelop_version: '7.3.0.764'
+        mono_apt_repo_distro: 'stable-bionic'
         box_settings:
-            is_desktop: "false"
-            time_zone: 'Asia/Jerusalem'
-            ssh_user: 'vagrant'
-            ssh_user_password: 'vagrant'
-            ssh_user_group: 'vagrant'
+            platform_version: '18.04'
+            is_desktop: 'true'
+            time_zone: 'Asia/Jerusalem'         

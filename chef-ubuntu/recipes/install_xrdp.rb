@@ -1,5 +1,7 @@
 box_settings = node['box_settings']
 
+apt_update
+
 package 'install xrdp' do
 	package_name ['xrdp']
 end
