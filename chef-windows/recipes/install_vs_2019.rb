@@ -18,7 +18,7 @@ end
 powershell_script "update visual studio 2019" do
   code <<-EOH
   Start-Process -FilePath "#{installerPath}" -ArgumentList --update, --quiet, --wait, --norestart -Wait -PassThru
-  Start-Process -FilePath "#{installerPath}" -ArgumentList update, \"--installPath `\"#{vsPath}`\"\", --quiet, --wait, --norestart -Wait -PassThru
+  Start-Process -FilePath "#{installerPath}" -ArgumentList update, \"--installPath `\"#{vsPath}`\"\", --quiet, --wait, --norestart, --nocache -Wait -PassThru
   EOH
   not_if "-Not (Test-Path '#{vsPath}')"
   timeout 7200
