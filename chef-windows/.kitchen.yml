@@ -19,10 +19,9 @@ platforms:
   - name: win-10-hyperv
     os_type: windows
     driver:
-        parent_vhd_folder: '../../packer/.output/hyperv/win10/Virtual Hard Disks'
+        parent_vhd_folder: '../../.output/hyperv/win10/Virtual Hard Disks'
         parent_vhd_name: 'win10.vhdx'
   - name: win-10-vagrant
-    os_type: windows
     driver:
       name: vagrant
       provider: hyperv
@@ -33,7 +32,7 @@ platforms:
   - name: win-server-core-2019-hyperv
     os_type: windows
     driver:
-        parent_vhd_folder: '../../packer/.output/hyperv/server_core_2019/Virtual Hard Disks'
+        parent_vhd_folder: '../../.output/hyperv/server_core_2019/Virtual Hard Disks'
         parent_vhd_name: 'server_core_2019.vhdx'
 
 verifier:
@@ -42,16 +41,9 @@ verifier:
 suites:
   - name: common
     run_list:      
-#      - recipe[chef-windows::install_ps_nuget_provider]
-#      - recipe[chef-windows::allow_rdp]
-#      - recipe[chef-windows::enable_file_sharing]
-#      - recipe[chef-windows::set_local_account_token_filter_policy]
-#      - recipe[chef-windows::add_sysprep_unattended]
-#      - recipe[chef-windows::disable_cortana]
-#      - recipe[chef-windows::uninstall_one_drive]
-#      - recipe[chef-windows::uninstall_windows_media_player]
-#      - recipe[chef-windows::clean_sxs]
-      - role[windows_docker_server]
+      #- recipe[chef-windows::install_build_prerequisites_packages]
+      - recipe[chef-windows::install_vs_2019]
+      - recipe[chef-windows::set_env_vars]
     attributes:
         have_gui: 'false'
         box_settings:

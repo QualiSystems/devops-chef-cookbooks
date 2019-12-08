@@ -10,7 +10,7 @@ cookbook_file 'copy the visual studio installer configuration file' do
 end
 
 cookbook_file 'copy the visual studio installer' do
-  source 'vs_enterprise.exe'
+  source 'vs_enterprise.exe.file'
   path installerPath
   action :create
 end
