@@ -34,6 +34,19 @@ platforms:
     driver:
         parent_vhd_folder: '../../.output/hyperv/server_core_2019/Virtual Hard Disks'
         parent_vhd_name: 'server_core_2019.vhdx'
+  - name: win-server-2019-hyperv
+    os_type: windows
+    driver:
+        parent_vhd_folder: '../../.output/hyperv/server_2019/Virtual Hard Disks'
+        parent_vhd_name: 'server_2019.vhdx'
+  - name: win-server-2019-vagrant
+    driver:
+      name: vagrant
+      provider: hyperv
+      box: server2019
+      vm_hostname: false
+      network:
+        - ["public_network", bridge: "packer-hyperv-iso"]
 
 verifier:
       name: inspec
@@ -42,8 +55,8 @@ suites:
   - name: common
     run_list:      
       #- recipe[chef-windows::install_build_prerequisites_packages]
-      - recipe[chef-windows::install_vs_2019]
-      - recipe[chef-windows::set_env_vars]
+      #- recipe[chef-windows::install_vs_2019]
+      - role[chef-windows::quali_tc_agent]
     attributes:
         have_gui: 'false'
         box_settings:
