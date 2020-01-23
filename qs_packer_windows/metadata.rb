@@ -6,6 +6,6 @@ description 'Resources to automate windows configuration'
 long_description 'Resources to automate windows configuration'
 version '0.1.0'
 
-depends 'chef-helper'
+depends 'qs_helper'
 depends 'windows'
 depends 'chocolatey'

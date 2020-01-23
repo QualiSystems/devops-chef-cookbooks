@@ -1,4 +1,15 @@
 name "quali_tc_agent"
 description "Quali TeamCity Agent"
-run_list "recipe[chef-windows::install_all_vc_runtimes]",
-		 "recipe[chef-windows::install_dotnet_452]"
+run_list "recipe[chef-windows::set_timezone]",
+		 "recipe[chef-windows::disable_firewall]",
+		 "recipe[chef-windows::enable_samba_version_1]",
+		 "recipe[chef-windows::set_computer_name]",
+		 "recipe[chef-windows::join_domain]",
+		 "recipe[chef-windows::add_domain_user_to_admin_group]",
+		 "recipe[chef-windows::allow_rdp]",
+		 "recipe[chef-windows::disable_uac]",
+		 "recipe[chef-windows::set_power_plan]",
+		 "recipe[chef-windows::enable_file_sharing]",
+		 "recipe[chef-windows::enable_powershell_remoting]",
+		 "recipe[chef-windows::set_env_vars]",
+		 "recipe[chef-windows::install_agent_dependencies]",

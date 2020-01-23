@@ -1,4 +1,4 @@
-name 'chef-ubuntu'
+name 'qs_packer_ubuntu'
 maintainer 'DG'
 maintainer_email 'dg@dg.com'
 license 'all_rights'
@@ -6,5 +6,5 @@ description 'Resources to automate ubuntu configuration'
 long_description 'Resources to automate ubuntu configuration'
 version '0.1.0'
 
-depends 'chef-helper'
+depends 'qs_helper'
 depends 'openssh'

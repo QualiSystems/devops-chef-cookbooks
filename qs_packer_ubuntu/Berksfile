@@ -1,4 +1,4 @@
 source 'https://supermarket.chef.io'
 
-cookbook 'chef-helper', path: '../chef-helper'
+cookbook 'qs_helper', path: '../qs_helper'
 metadata

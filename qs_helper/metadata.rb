@@ -1,4 +1,4 @@
-name 'chef-helper'
+name 'qs_helper'
 maintainer 'DG'
 maintainer_email 'dg@dg.com'
 license 'all_rights'

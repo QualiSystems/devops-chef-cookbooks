@@ -19,7 +19,7 @@ transport:
   password: 'vagrant'
   username: 'vagrant'
 
-platforms:  
+platforms:
   - name: ubuntu-18.04-hyperv
     driver:
       name: hyperv
@@ -31,8 +31,8 @@ platforms:
             ssh_user_password: 'vagrant'
             ssh_user_group: 'vagrant'
             home_folder: '/home/vagrant'
-  
-  - name: ubuntu-18.04-docker    
+
+  - name: ubuntu-18.04-docker
     transport:
       name: ssh
       password: root
@@ -53,7 +53,7 @@ platforms:
             ssh_user_password: 'root'
             ssh_user_group: 'root'
             home_folder: '/root'
-  
+
   - name: ubuntu-18.04-vagrant
     driver:
       name: vagrant
@@ -75,10 +75,10 @@ verifier:
 suites:
   - name: monodevelop
     run_list:
-      #- recipe[chef-ubuntu::install_hyperv_integration_services]
-      #- recipe[chef-ubuntu::install_mono]
-      #- recipe[chef-ubuntu::build_monodevelop]
-      #- recipe[chef-ubuntu::install_base_server_packages]
+      #- recipe[qs_packer_ubuntu::install_hyperv_integration_services]
+      #- recipe[qs_packer_ubuntu::install_mono]
+      #- recipe[qs_packer_ubuntu::build_monodevelop]
+      #- recipe[qs_packer_ubuntu::install_base_server_packages]
       - role[monodevelop]
     attributes:
         monodevelop_version: '7.3.0.764'
@@ -86,4 +86,4 @@ suites:
         box_settings:
             platform_version: '18.04'
             is_desktop: 'true'
-            time_zone: 'Asia/Jerusalem'         
+            time_zone: 'Asia/Jerusalem'
