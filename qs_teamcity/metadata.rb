@@ -1,4 +1,4 @@
-name 'chef-quali_teamcity'
+name 'qs_teamcity'
 maintainer 'Quali'
 maintainer_email 'quali@quali.com'
 license 'all_rights'
