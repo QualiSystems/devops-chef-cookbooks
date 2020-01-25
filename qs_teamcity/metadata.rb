@@ -7,5 +7,4 @@ long_description 'Resources to automate Quali TeamCity agents'
 version '0.1.0'
 
 depends 'qs_helper'
-depends 'chef-windows'
 depends 'chocolatey'

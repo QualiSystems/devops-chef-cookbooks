@@ -1,4 +1,4 @@
-name 'chef-windows'
+name 'qs_packer_windows'
 maintainer 'DG'
 maintainer_email 'dg@dg.com'
 license 'all_rights'

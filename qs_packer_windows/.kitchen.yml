@@ -53,10 +53,10 @@ verifier:
 
 suites:
   - name: common
-    run_list:      
-      #- recipe[chef-windows::install_build_prerequisites_packages]
-      #- recipe[chef-windows::install_vs_2019]
-      - role[chef-windows::quali_tc_agent]
+    run_list:
+      #- recipe[qs_packer_windows::install_build_prerequisites_packages]
+      #- recipe[qs_packer_windows::install_vs_2019]
+      - role[qs_packer_windows::quali_tc_agent]
     attributes:
         have_gui: 'false'
         box_settings:
